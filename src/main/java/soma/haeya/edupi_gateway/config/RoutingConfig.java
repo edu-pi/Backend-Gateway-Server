@@ -29,7 +29,9 @@ public class RoutingConfig {
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder, AuthenticationFilter authorizationFilter) {
         return builder.routes()
-
+            .route("root_route", r -> r.path("/")
+                .filters(f -> f.setStatus(200))
+                .uri("no://op")) // health check
             .route(predicate -> predicate.path(VISUALIZE_PATH)
                 .filters(f -> f.filter(authorizationFilter.apply(config -> config.setRequiredRole("ROLE_USER"))))
                 .uri(VISUALIZE_URL)) // code_visualize
