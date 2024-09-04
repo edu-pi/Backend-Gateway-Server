@@ -36,7 +36,7 @@ jobs:
           CREATE_SECRET: ${{secrets.EDUPI_GATEWAY_DEV_APPLICATION_YML}}
           CREATE_SECRET_DIR: src/main/resources
           CREATE_SECRET_DIR_FILE_NAME: application.yml
-        run: echo $CREATE_SECRET > $CREATE_SECRET_DIR/$CREATE_SECRET_DIR_FILE_NAME
+        run: echo $CREATE_SECRET | base64 --decode > $CREATE_SECRET_DIR/$CREATE_SECRET_DIR_FILE_NAME
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
