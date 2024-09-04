@@ -1,0 +1,47 @@
+name: Deploy to Amazon ECS
+
+on:
+  push:
+    branches: [ "develop" ]
+
+env:
+  AWS_REGION: ap-northeast-2
+  ECR_REPOSITORY: edupi_gateway
+  ECS_SERVICE: gateway
+  ECS_CLUSTER: BE
+  ECS_TASK_DEFINITION: edupi_gateway-revision.json
+  CONTAINER_NAME: gateway
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Copy Secret yml
+        env:
+          CREATE_SECRET: ${{secrets.EDUPI_GATEWAY_DEV_APPLICATION_YML}}
+          CREATE_SECRET_DIR: src/main/resources
+          CREATE_SECRET_DIR_FILE_NAME: application.yml
+        run: echo $CREATE_SECRET > $CREATE_SECRET_DIR/$CREATE_SECRET_DIR_FILE_NAME
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew build
+
+
