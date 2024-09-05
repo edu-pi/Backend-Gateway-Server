@@ -33,7 +33,7 @@ public class RoutingConfig {
                 .filters(f -> f.setStatus(200))
                 .uri("no://op")) // health check
             .route(predicate -> predicate.path(VISUALIZE_PATH)
-                .filters(f -> f.filter(authorizationFilter.apply(config -> config.setRequiredRole("ROLE_USER"))))
+//                .filters(f -> f.filter(authorizationFilter.apply(config -> config.setRequiredRole("ROLE_USER"))))
                 .uri(VISUALIZE_URL)) // code_visualize
 
             .route(predicate -> predicate.path(USER_PATH)
