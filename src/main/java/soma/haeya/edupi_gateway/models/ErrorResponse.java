@@ -1,9 +1,15 @@
 package soma.haeya.edupi_gateway.models;
 
-import lombok.RequiredArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@RequiredArgsConstructor
+@Getter
+@NoArgsConstructor
 public class ErrorResponse {
 
-    private final String message;
+    private String message;
+
+    public ErrorResponse(String message) {
+        this.message = message;
+    }
 }
