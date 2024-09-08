@@ -25,6 +25,11 @@ public class RoutingConfig {
     @Value("${server-url.visualize.default-path}")
     private String VISUALIZE_PATH;
 
+    @Value("${server-url.lms.url}")
+    private String LMS_URL;
+    @Value("${server-url.lms.default-path}")
+    private String LMS_PATH;
+
 
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder, AuthenticationFilter authorizationFilter) {
@@ -41,6 +46,10 @@ public class RoutingConfig {
 
             .route(predicate -> predicate.path(DB_PATH)
                 .uri(DB_URL)) // edupi_db
+
+            .route(predicate -> predicate.path(LMS_PATH)
+                .filters(f -> f.filter(authorizationFilter.apply(config -> config.setRequiredRole("ROLE_USER"))))
+                .uri(LMS_URL)) // edupi_lms
 
             .build();
     }
