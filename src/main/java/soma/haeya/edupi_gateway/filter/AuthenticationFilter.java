@@ -1,5 +1,6 @@
 package soma.haeya.edupi_gateway.filter;
 
+import io.jsonwebtoken.Claims;
 import java.util.Optional;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,11 +43,13 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
 
             String token = extractToken(cookies);
 
-            if (!isJwtValid(token)) {
-                throw new UnAuthorizedException(HttpStatus.UNAUTHORIZED, "토큰이 유효하지 않습니다.");
-            }
+            Claims claims = jwtProvider.getClaimsJson(token);
 
-            return chain.filter(exchange);
+            ServerHttpRequest modifiedRequest = exchange.getRequest().mutate()
+                .header("X-User-Id", claims.get("id", Integer.class).toString())
+                .build();
+
+            return chain.filter(exchange.mutate().request(modifiedRequest).build());
         });
 
     }
@@ -56,16 +59,6 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
         return Optional.ofNullable(cookies.getFirst("token"))
             .map(HttpCookie::getValue)
             .orElseThrow(() -> new UnAuthorizedException(HttpStatus.UNAUTHORIZED, "토큰이 없습니다."));
-    }
-
-    private boolean isJwtValid(String token) {
-        try {
-            jwtProvider.validateToken(token);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-
     }
 
 }

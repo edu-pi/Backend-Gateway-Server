@@ -22,15 +22,17 @@ public class TokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public void validateToken(String token) {
-        Claims claims = getClaims(token);
+    public Claims getClaimsJson(String token) {
+        Claims claims = extractClaimsFromJwt(token);
 
         if (claims.getExpiration().before(new Date())) {
             throw new UnAuthorizedException(HttpStatus.UNAUTHORIZED, "토큰이 유효하지 않습니다.");
         }
+
+        return claims;
     }
 
-    private Claims getClaims(String token) {
+    private Claims extractClaimsFromJwt(String token) {
         try {
             return Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
         } catch (JwtException e) {
