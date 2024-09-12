@@ -4,14 +4,6 @@ on:
   pull_request:
     branches: [ "develop" ]
 
-env:
-  AWS_REGION: ap-northeast-2
-  ECR_REPOSITORY: edupi_gateway
-  ECS_SERVICE: gateway
-  ECS_CLUSTER: BE
-  ECS_TASK_DEFINITION: edupi_gateway-revision.json
-  CONTAINER_NAME: gateway
-
 permissions:
   contents: read
 

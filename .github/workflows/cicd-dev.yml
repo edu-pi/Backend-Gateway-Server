@@ -9,7 +9,7 @@ env:
   ECR_REPOSITORY: edupi_gateway
   ECS_SERVICE: gateway
   ECS_CLUSTER: BE-fargate
-  ECS_TASK_DEFINITION: edupi_gateway-revision.json
+  ECS_TASK_DEFINITION: edupi_gateway.json
   CONTAINER_NAME: gateway
 
 permissions:
