@@ -1,4 +1,4 @@
-package soma.haeya.edupi_gateway.filter;
+package soma.edupi.gateway.filter;
 
 import io.jsonwebtoken.Claims;
 import java.util.Optional;
@@ -12,8 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
-import soma.haeya.edupi_gateway.auth.TokenProvider;
-import soma.haeya.edupi_gateway.exception.UnAuthorizedException;
+import soma.edupi.gateway.auth.TokenProvider;
+import soma.edupi.gateway.exception.UnAuthorizedException;
 
 @Slf4j
 @Component

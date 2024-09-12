@@ -1,4 +1,4 @@
-package soma.haeya.edupi_gateway.exception;
+package soma.edupi.gateway.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
