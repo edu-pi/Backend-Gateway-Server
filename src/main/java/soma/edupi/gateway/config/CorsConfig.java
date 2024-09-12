@@ -22,7 +22,7 @@ public class CorsConfig {
         configuration.setAllowedOrigins(
             List.of(
                 "http://localhost:5000",
-                "http://fe-alb-142217835.ap-northeast-2.elb.amazonaws.com"
+                "http://d33notepxaalcd.cloudfront.net"
             )
         );
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
