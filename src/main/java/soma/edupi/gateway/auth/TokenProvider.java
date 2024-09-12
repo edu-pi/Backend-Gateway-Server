@@ -1,4 +1,4 @@
-package soma.haeya.edupi_gateway.auth;
+package soma.edupi.gateway.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -10,7 +10,7 @@ import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-import soma.haeya.edupi_gateway.exception.UnAuthorizedException;
+import soma.edupi.gateway.exception.UnAuthorizedException;
 
 @Component
 public class TokenProvider {

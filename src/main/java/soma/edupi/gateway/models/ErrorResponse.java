@@ -1,4 +1,4 @@
-package soma.haeya.edupi_gateway.models;
+package soma.edupi.gateway.models;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

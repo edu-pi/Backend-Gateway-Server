@@ -1,4 +1,4 @@
-package soma.haeya.edupi_gateway.config;
+package soma.edupi.gateway.config;
 
 import java.util.List;
 import org.springframework.context.annotation.Bean;

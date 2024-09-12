@@ -1,4 +1,4 @@
-package soma.haeya.edupi_gateway.filter;
+package soma.edupi.gateway.filter;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
