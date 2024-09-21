@@ -46,7 +46,7 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
             Claims claims = jwtProvider.getClaimsJson(token);
 
             ServerHttpRequest modifiedRequest = exchange.getRequest().mutate()
-                .header("X-User-Id", claims.get("id", Integer.class).toString())
+                .header("X-Account-Id", claims.get("accountId", Long.class).toString())
                 .build();
 
             return chain.filter(exchange.mutate().request(modifiedRequest).build());
