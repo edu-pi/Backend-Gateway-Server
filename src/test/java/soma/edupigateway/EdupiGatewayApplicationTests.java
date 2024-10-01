@@ -1,4 +1,4 @@
-package soma.edupi.gateway;
+package soma.edupigateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package soma.edupi.gateway.config;
+package soma.edupigateway.config;
 
 import java.util.List;
 import org.springframework.context.annotation.Bean;

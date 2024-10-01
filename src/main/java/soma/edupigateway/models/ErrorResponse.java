@@ -1,4 +1,4 @@
-package soma.edupi.gateway.models;
+package soma.edupigateway.models;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

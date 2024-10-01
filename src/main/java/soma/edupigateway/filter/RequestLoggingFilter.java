@@ -1,4 +1,4 @@
-package soma.edupi.gateway.filter;
+package soma.edupigateway.filter;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
