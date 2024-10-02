@@ -1,11 +1,11 @@
-package soma.edupi.gateway.config;
+package soma.edupigateway.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import soma.edupi.gateway.filter.AuthenticationFilter;
+import soma.edupigateway.filter.AuthenticationFilter;
 
 @Configuration
 public class RoutingConfig {

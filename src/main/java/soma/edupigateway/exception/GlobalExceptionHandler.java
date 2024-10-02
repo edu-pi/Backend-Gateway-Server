@@ -1,10 +1,10 @@
-package soma.edupi.gateway.exception;
+package soma.edupigateway.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import soma.edupi.gateway.models.ErrorResponse;
+import soma.edupigateway.models.ErrorResponse;
 
 @Slf4j
 @RestControllerAdvice
