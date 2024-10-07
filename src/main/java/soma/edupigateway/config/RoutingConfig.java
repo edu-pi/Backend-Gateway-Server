@@ -10,6 +10,16 @@ import soma.edupigateway.filter.AuthenticationFilter;
 @Configuration
 public class RoutingConfig {
 
+    @Value("${server-url.syntax.url}")
+    private String SYNTAX_URL;
+    @Value("${server-url.syntax.default-path}")
+    private String SYNTAX_PATH;
+
+    @Value("${server-url.visualize.url}")
+    private String VISUALIZE_URL;
+    @Value("${server-url.visualize.default-path}")
+    private String VISUALIZE_PATH;
+
     @Value("${server-url.db.url}")
     private String DB_URL;
     @Value("${server-url.db.default-path}")
@@ -25,11 +35,6 @@ public class RoutingConfig {
 //    @Value("${server-url.lms.default-path}")
 //    private String LMS_PATH;
 
-    @Value("${server-url.visualize.url}")
-    private String VISUALIZE_URL;
-    @Value("${server-url.visualize.default-path}")
-    private String VISUALIZE_PATH;
-
 
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder, AuthenticationFilter authorizationFilter) {
@@ -37,6 +42,9 @@ public class RoutingConfig {
             .route("root_route", r -> r.path("/")
                 .filters(f -> f.setStatus(200))
                 .uri("no://op")) // health check
+
+            .route(predicate -> predicate.path(SYNTAX_PATH)
+                .uri(SYNTAX_URL)) // edupi-syntax
 
             .route(predicate -> predicate.path(VISUALIZE_PATH)
 //                .filters(f -> f.filter(authorizationFilter.apply(config -> config.setRequiredRole("ROLE_USER"))))
