@@ -20,45 +20,58 @@ public class RoutingConfig {
     @Value("${server-url.visualize.default-path}")
     private String VISUALIZE_PATH;
 
-    @Value("${server-url.db.url}")
-    private String DB_URL;
-    @Value("${server-url.db.default-path}")
-    private String DB_PATH;
+    @Value("${server-url.meta.url}")
+    private String META_URL;
+    @Value("${server-url.meta.default-path}")
+    private String META_PATH;
 
     @Value("${server-url.user.url}")
     private String USER_URL;
     @Value("${server-url.user.default-path}")
     private String USER_PATH;
 
-//    @Value("${server-url.lms.url}")
-//    private String LMS_URL;
-//    @Value("${server-url.lms.default-path}")
-//    private String LMS_PATH;
+    @Value("${server-url.lms.url}")
+    private String LMS_URL;
+    @Value("${server-url.lms.default-path}")
+    private String LMS_PATH;
 
 
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder, AuthenticationFilter authorizationFilter) {
-        return builder.routes()
-            .route("root_route", r -> r.path("/")
+        return builder
+            .routes()
+            .route("root_route", r -> r.path("/health-check")
                 .filters(f -> f.setStatus(200))
-                .uri("no://op")) // health check
+                .uri("no://op")
+            ) // health check
 
-            .route(predicate -> predicate.path(SYNTAX_PATH)
-                .uri(SYNTAX_URL)) // edupi-syntax
+            .route(predicate -> predicate
+                .path(SYNTAX_PATH)
+                .uri(SYNTAX_URL)
+            ) // edupi-syntax
 
-            .route(predicate -> predicate.path(VISUALIZE_PATH)
-//                .filters(f -> f.filter(authorizationFilter.apply(config -> config.setRequiredRole("ROLE_USER"))))
-                .uri(VISUALIZE_URL)) // edupi-visualize
+            .route(predicate -> predicate
+                .path(VISUALIZE_PATH)
+                .uri(VISUALIZE_URL)
+            ) // edupi-visualize
 
-//            .route(predicate -> predicate.path(LMS_PATH)
-//                .filters(f -> f.filter(authorizationFilter.apply(config -> config.setRequiredRole("ROLE_USER"))))
-//                .uri(LMS_URL)) // edupi-lms
+            .route(predicate -> predicate
+                .path(LMS_PATH)
+                .filters(
+                    f -> f.filter(authorizationFilter.apply(config -> config.setRequiredRole("ROLE_USER")))
+                )
+                .uri(LMS_URL)
+            ) // edupi-lms
 
-            .route(predicate -> predicate.path(USER_PATH)
-                .uri(USER_URL)) // edupi-user
+            .route(predicate -> predicate
+                .path(USER_PATH)
+                .uri(USER_URL)
+            ) // edupi-user
 
-            .route(predicate -> predicate.path(DB_PATH)
-                .uri(DB_URL)) // edupi-db
+            .route(predicate -> predicate
+                .path(META_PATH)
+                .uri(META_URL)
+            ) // edupi-db
 
             .build();
     }
