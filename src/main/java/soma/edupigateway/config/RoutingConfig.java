@@ -48,7 +48,7 @@ public class RoutingConfig {
             .route(predicate -> predicate
                 .path(ASSIST_PATH)
                 .uri(ASSIST_URL)
-            ) // edupi-syntax
+            ) // edupi-assist
 
             .route(predicate -> predicate
                 .path(VISUALIZE_PATH)
@@ -71,7 +71,7 @@ public class RoutingConfig {
             .route(predicate -> predicate
                 .path(META_PATH)
                 .uri(META_URL)
-            ) // edupi-db
+            ) // edupi-meta
 
             .build();
     }
