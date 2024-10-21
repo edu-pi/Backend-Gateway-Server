@@ -10,10 +10,10 @@ import soma.edupigateway.filter.AuthenticationFilter;
 @Configuration
 public class RoutingConfig {
 
-    @Value("${server-url.syntax.url}")
-    private String SYNTAX_URL;
-    @Value("${server-url.syntax.default-path}")
-    private String SYNTAX_PATH;
+    @Value("${server-url.assist.url}")
+    private String ASSIST_URL;
+    @Value("${server-url.assist.default-path}")
+    private String ASSIST_PATH;
 
     @Value("${server-url.visualize.url}")
     private String VISUALIZE_URL;
@@ -46,8 +46,8 @@ public class RoutingConfig {
             ) // health check
 
             .route(predicate -> predicate
-                .path(SYNTAX_PATH)
-                .uri(SYNTAX_URL)
+                .path(ASSIST_PATH)
+                .uri(ASSIST_URL)
             ) // edupi-syntax
 
             .route(predicate -> predicate
