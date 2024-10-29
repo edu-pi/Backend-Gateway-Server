@@ -22,7 +22,8 @@ public class CorsConfig {
         configuration.setAllowedOrigins(
             List.of(
                 "http://localhost:5000",
-                "http://d33notepxaalcd.cloudfront.net"
+                "http://edupi.co.kr",
+                "https://edupi.co.kr"
             )
         );
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
